@@ -14,7 +14,7 @@ class User_model extends CI_Model {
 		$this->db->where("is_deleted='0' AND (username='$email' OR email='$email')");
 		$result = $this->db->get('users')->result();
 		if(!empty($result)){       
-			if (password_verify($password, $result[0]->password)) {       
+			if (md5($password) == $result[0]->password) {       
 				if($result[0]->status != 'active') {
 				return 'not_varified';
 				}
