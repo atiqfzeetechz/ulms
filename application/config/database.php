@@ -5,7 +5,7 @@ $active_group = 'default';
 $query_builder = TRUE;
 $hostname ="localhost";
 $username ="tester_user";
-$password ="tester123";
+$password ="TesterPass@123";
 $database ="tester_db";	
 
 $db['default'] = array(
