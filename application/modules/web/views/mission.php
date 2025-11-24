@@ -15,6 +15,7 @@
                   <div class="col-lg-12 col-12">
                       
                                  <?php 
+				if($intention->num_rows() > 0) {
 				 $File =$intention->row()->Image1;  
 		if(!empty($File))
 		{ 
@@ -32,14 +33,17 @@
 		{
 		$url = base_url().'uploads/no_file.jpg';	
 		}
+				} else {
+					$url = base_url().'uploads/no_file.jpg';
+				}
 				 ?>
 				 
            <img src="<?php echo $url; ?>" class="img img-fluid img-thumbnail">
           <center>
            <br>
-          <h3> <b><?php echo $intention->row()->name; ?></b></h3>
-          <a href="tel:<?php echo $intention->row()->mobile_number; ?>">  <?php echo $intention->row()->mobile_number; ?></a>
-           <p> <?php echo $intention->row()->about; ?></p>
+          <h3> <b><?php echo ($intention->num_rows() > 0) ? $intention->row()->name : 'Name not available'; ?></b></h3>
+          <a href="tel:<?php echo ($intention->num_rows() > 0) ? $intention->row()->mobile_number : '#'; ?>">  <?php echo ($intention->num_rows() > 0) ? $intention->row()->mobile_number : 'Contact not available'; ?></a>
+           <p> <?php echo ($intention->num_rows() > 0) ? $intention->row()->about : 'About not available'; ?></p>
            </center>
            </div>
             <!--<div class="col-lg-12 col-6">
@@ -50,7 +54,7 @@
           </div>
           <div class="col-lg-8 pt-4 pt-lg-0" data-aos="fade-left">
             <p style="font-family:'Arya', sans-serif !important;background:red !important;font-size:18px;">
-                <?php echo $intention->row()->Text; ?>
+                <?php echo ($intention->num_rows() > 0) ? $intention->row()->Text : 'Content not available'; ?>
             </p>
           </div>
         </div>

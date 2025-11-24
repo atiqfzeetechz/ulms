@@ -14,7 +14,7 @@
           
           <div class="col-lg-12 pt-4 pt-lg-0" data-aos="fade-left">
             <p style="font-family:'Arya', sans-serif !important;background:red !important;font-size:18px;">
-                <?php echo $intention->row()->Text; ?>
+                <?php echo ($intention->num_rows() > 0) ? $intention->row()->Text : 'Content not available'; ?>
             </p>
           </div>
         </div>
