@@ -3110,57 +3110,7 @@ function get_insta_gellery($rowno=0){
        );
        echo json_encode($error_data);
    }
- owperpage,$rowno);
- 
-    // Pagination Configuration
-    $config['base_url'] = base_url().'dailyupdate/insta_gellery/';
-    $config['use_page_numbers'] = TRUE;
-    $config['total_rows'] = $allcount;
-    $config['per_page'] = $rowperpage;
- 
- 
- 
- ///mysql_affected_rows
-    $config['full_tag_open'] = '<div class="paginations"><ul class="pagination">';
-    $config['full_tag_close'] = '</ul></div>';
-    $config['first_link'] = false;
-    $config['last_link'] = false;
-    $config['first_tag_open'] = '<li>';
-    $config['first_tag_close'] = '</li>';
-    $config['prev_link'] = '«';
-    $config['prev_tag_open'] = '<li class="prev">';
-    $config['prev_tag_close'] = '</li>';
-    $config['next_link'] = '»';
-    $config['next_tag_open'] = '<li>';
-    $config['next_tag_close'] = '</li>';
-    $config['last_tag_open'] = '<li>';
-    $config['last_tag_close'] = '</li>';
-    $config['cur_tag_open'] =  '<li class="active"><a href="#">';
-    $config['cur_tag_close'] = '</a></li>';
-    $config['num_tag_open'] = '<li>';
-    $config['num_tag_close'] = '</li>';
-    $config["num_links"] = 1;
-     
-     
-                $config['next_link'] = 'Next Page';
-                $config['next_tag_open'] = '<li>';
-                $config['next_tag_close'] = '</li>';
-
-                $config['prev_link'] = 'Previous Page';
-                $config['prev_tag_open'] = '<li>';
-                $config['prev_tag_close'] = '</li>';
- //end mysql_affected_rows
-    // Initialize
-    $this->pagination->initialize($config);
-    $pageNo = $this->uri->segment(3);
-    // Initialize $data Array
-    $data['pagination_link'] = $this->pagination->create_links();
-    $data['country_table'] = $users_record;
-    $data['page_number'] = $pageNo;
-
-    echo json_encode($data);
-    
-   }
+ }
 function delete_insta_gellery($id=''){
        is_login();
        $this->unlinkInstaFile($id);
