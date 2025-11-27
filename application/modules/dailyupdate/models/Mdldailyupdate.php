@@ -738,7 +738,7 @@ function get_message_history($limit,$start,$filters = [])
 
  function get_insta_gellery($limit, $start) {
     $output = '';
-    $this->db->select("common_key,status,caption, COUNT(*) as media_count,added");
+    $this->db->select("common_key, MAX(status) as status, MAX(caption) as caption, COUNT(*) as media_count, MAX(added) as added");
     $this->db->from("insta_gellery");
     $this->db->group_by("common_key");
     $this->db->order_by("MAX(id)", "desc"); // newest group first
