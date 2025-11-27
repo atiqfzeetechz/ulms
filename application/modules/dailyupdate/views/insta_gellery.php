@@ -86,6 +86,7 @@
                                    
                                    <h3>Data is loading please wait..   <i class="fa fa-refresh fa-spin"></i> </h3>
                                </div>
+                               <div id="debug_info" style="color: red; font-size: 12px;"></div>
                                <div align="right" id="pagination_link"></div>
                                           
 						       

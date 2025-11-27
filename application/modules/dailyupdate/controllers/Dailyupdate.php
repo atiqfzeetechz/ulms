@@ -3074,19 +3074,43 @@ else {
 
 function get_insta_gellery($rowno=0){  
    is_login();
-   $this->load->library("pagination");
-    // Row per page
-    $rowperpage = getRowPerPage();
-
-    // Row position
-    if($rowno != 0){
-      $rowno = ($rowno-1) * $rowperpage;
-    }
- 
-    // All records count
-   $allcount = $this->Mdlmaster->count_all('insta_gellery');
-    // Get records
-    $users_record = $this->Mdldailyupdate->get_insta_gellery($rowperpage,$rowno);
+   
+   try {
+       $this->load->library("pagination");
+        $rowperpage = getRowPerPage();
+        if($rowno != 0){
+          $rowno = ($rowno-1) * $rowperpage;
+        }
+        $allcount = $this->Mdlmaster->count_all('insta_gellery');
+        $users_record = $this->Mdldailyupdate->get_insta_gellery($rowperpage,$rowno);
+        
+        $config['base_url'] = base_url().'dailyupdate/insta_gellery/';
+        $config['use_page_numbers'] = TRUE;
+        $config['total_rows'] = $allcount;
+        $config['per_page'] = $rowperpage;
+        $config['full_tag_open'] = '<div class="paginations"><ul class="pagination">';
+        $config['full_tag_close'] = '</ul></div>';
+        $config['first_link'] = false;
+        $config['last_link'] = false;
+        $config['next_link'] = 'Next Page';
+        $config['prev_link'] = 'Previous Page';
+        
+        $this->pagination->initialize($config);
+        $pageNo = $this->uri->segment(3);
+        $data['pagination_link'] = $this->pagination->create_links();
+        $data['country_table'] = $users_record;
+        $data['page_number'] = $pageNo;
+        echo json_encode($data);
+        
+   } catch (Exception $e) {
+       $error_data = array(
+           'country_table' => '<div class="alert alert-danger">Error: ' . $e->getMessage() . '</div>',
+           'pagination_link' => '',
+           'page_number' => 1
+       );
+       echo json_encode($error_data);
+   }
+ owperpage,$rowno);
  
     // Pagination Configuration
     $config['base_url'] = base_url().'dailyupdate/insta_gellery/';

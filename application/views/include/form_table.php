@@ -428,6 +428,13 @@ $(document).ready(function(){
 	 
    $(".loading").hide();
     
+    },
+    error: function(xhr, status, error) {
+      console.log('AJAX Error:', error);
+      console.log('Status:', status);
+      console.log('Response:', xhr.responseText);
+      $('#debug_info').html('Error: ' + error + ' | Status: ' + status + ' | URL: ' + url);
+      $(".loading").hide();
     }
   });
  }
