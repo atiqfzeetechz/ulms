@@ -2954,6 +2954,12 @@ function add_insta_gellery($param1=''){
             $save['media_type'] = $this->input->post('media_type');
             $save['caption'] = $this->input->post('caption');
             $save['common_key'] = uniqid('', true); // adds extra entropy
+            $save['status'] = 0;
+            $save['media_id'] = '';
+            $save['c_time'] = '';
+            $save['s_time'] = '';
+            $save['e_time'] = '';
+            $save['added'] = date('Y-m-d H:i:s');
 
             $cpt = count($_FILES['image']['name']);
             

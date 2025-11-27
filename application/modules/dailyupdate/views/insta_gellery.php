@@ -134,7 +134,32 @@
   document.getElementById('add-media-btn').addEventListener('click', function () {
     addMediaInput();
   });
+
+  // Function to view media by common key
+  function viewMedia(common_key) {
+    $.post('<?php echo base_url(); ?>dailyupdate/get_media_by_common_key', {common_key: common_key}, function(data) {
+      $('#mediaModal .modal-body').html(data);
+      $('#mediaModal').modal('show');
+    });
+  }
 </script>
+
+<!-- Modal for viewing media -->
+<div class="modal fade" id="mediaModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Media Gallery</h5>
+        <button type="button" class="close" data-dismiss="modal">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Media will be loaded here -->
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
